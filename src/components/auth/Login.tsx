@@ -11,6 +11,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import { auth } from '../../firebase';
 import { useNavigate } from "react-router";
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/user/userSlice';
 
 
 const theme = createTheme();
@@ -19,6 +21,7 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,6 +32,7 @@ export const Login: React.FC = () => {
 
   const signInEmail = async () => {
     await auth.signInWithEmailAndPassword(email, password).catch((err) => alert(err.message));
+    dispatch(login)
     navigate("/");
   };
 

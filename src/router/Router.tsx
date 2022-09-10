@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../firebase';
 import { SignUp } from '../components/auth/SignUp';
 import { useNavigate } from "react-router";
-
+import { AuthUserRoute } from '../providers/AuthUserRoute';
 
 export const Router: FC = () => {
   // ユーザーの状態を取得
@@ -36,11 +36,14 @@ export const Router: FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
         </Routes>
+        <AuthUserRoute>
+          <Routes>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </AuthUserRoute>
       </BrowserRouter>
     </>
   )
