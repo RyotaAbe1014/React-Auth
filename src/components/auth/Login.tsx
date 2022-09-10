@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, memo, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,7 +17,7 @@ import { login } from '../../features/user/userSlice';
 
 const theme = createTheme();
 
-export const Login: React.FC = () => {
+export const Login: React.FC = memo(() => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,9 +31,11 @@ export const Login: React.FC = () => {
   };
 
   const signInEmail = async () => {
-    await auth.signInWithEmailAndPassword(email, password).catch((err) => alert(err.message));
-    dispatch(login)
-    navigate("/");
+    await auth.signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
   };
 
   return (
@@ -95,4 +97,4 @@ export const Login: React.FC = () => {
       </Container>
     </ThemeProvider>
   );
-}
+})

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, memo, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const theme = createTheme();
 
-export const SignUp: React.FC = () => {
+export const SignUp: React.FC = memo(() => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -95,4 +95,4 @@ export const SignUp: React.FC = () => {
       </Container>
     </ThemeProvider>
   );
-}
+})
