@@ -1,9 +1,4 @@
-import React, { FC, memo, ReactNode, useEffect, useState } from "react";
-import { User } from "../types/user";
-import { login, logout, selectUser } from '../features/user/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { auth } from '../firebase';
-import { Navigate } from "react-router";
+import React, { FC, memo, } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 // ログイン
 import { Login } from "../components/auth/Login";

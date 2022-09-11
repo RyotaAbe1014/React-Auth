@@ -1,5 +1,4 @@
 import React, { FC, memo, ReactNode, useEffect, useState } from "react";
-import { User } from "../types/user";
 import { login, logout, selectUser } from '../features/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../firebase';
