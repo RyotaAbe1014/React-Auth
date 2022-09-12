@@ -8,12 +8,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from '../../firebase';
 
 
 const theme = createTheme();
 
 export const SignUp: React.FC = memo(() => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -21,6 +23,15 @@ export const SignUp: React.FC = memo(() => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // サインアップ
     event.preventDefault();
+    signUpEmail();
+  };
+
+  const signUpEmail = async () => {
+    await auth.createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
   };
 
   return (
