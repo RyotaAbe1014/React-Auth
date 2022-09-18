@@ -88,6 +88,20 @@ export const Login: React.FC = memo(() => {
             </Button>
           </Box>
         </Box>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          github
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          google
+        </Button>
         <Link to="/signup">create new account</Link>
       </Container>
     </ThemeProvider>
