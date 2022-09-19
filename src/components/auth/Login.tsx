@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import { auth } from '../../firebase';
+import { auth, githubProvider } from '../../firebase';
 import { useNavigate } from "react-router";
 
 const theme = createTheme();
@@ -27,6 +27,14 @@ export const Login: React.FC = memo(() => {
 
   const signInEmail = async () => {
     await auth.signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const signInGitHub = async () => {
+    await auth.signInWithPopup(githubProvider)
       .then((res) => {
         navigate("/");
       })
@@ -92,6 +100,7 @@ export const Login: React.FC = memo(() => {
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          onClick={() => signInGitHub()}
         >
           github
         </Button>
