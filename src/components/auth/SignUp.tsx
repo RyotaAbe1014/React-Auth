@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from '../../firebase';
+import { auth, githubProvider, provider } from '../../firebase';
 
 
 const theme = createTheme();
@@ -33,6 +33,22 @@ export const SignUp: React.FC = memo(() => {
       })
       .catch((err) => alert(err.message));
   };
+
+  const signInGitHub = async () => {
+    await auth.signInWithPopup(githubProvider)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
+  };
+  const signInGoogle = async () => {
+    await auth.signInWithPopup(provider)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => alert(err.message));
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -101,6 +117,22 @@ export const SignUp: React.FC = memo(() => {
               SignUp
             </Button>
           </Box>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={() => signInGitHub()}
+          >
+            github
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={() => signInGoogle()}
+          >
+            google
+          </Button>
         </Box>
         <Link to="/login">login</Link>
       </Container>
