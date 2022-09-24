@@ -123,4 +123,4 @@ export const Login: React.FC = memo(() => {
       </Container>
     </ThemeProvider>
   );
-})
+});
