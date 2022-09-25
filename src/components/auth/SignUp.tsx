@@ -133,6 +133,13 @@ export const SignUp: React.FC = memo(() => {
           >
             google
           </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Twitter
+          </Button>
         </Box>
         <Link to="/login">login</Link>
       </Container>
