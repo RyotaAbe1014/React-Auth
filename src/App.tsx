@@ -1,5 +1,5 @@
 import { Router } from './router/Router';
-import React, { FC, memo, ReactNode, useEffect, useState } from "react";
+import React, { FC } from "react";
 const App: FC = () => {
 
   return (
